@@ -2,18 +2,18 @@
 //include 'Pet.php';
 class Master
 {
-    private $state = null;  //переменные класса приватны, и меняем мы их через публичные функции get set
+    private $state = null;  //1010...10
     private $name = null;
 
     /**
      * @var $dog Pet
      * @var $item Thing
-     * @var $plate Street
+     * @var $plaсe Street
      */
 
     private $dog = null;  //собака человека
     private $item = null; //предмет
-    private $plate = null; // место выгула
+    private $plaсe = null; // место выгула
 
     public function __construct($name,$state)
     {
@@ -35,10 +35,11 @@ class Master
     public function setDog($dog)    //знакомство с собакой
     {
         $this->dog = $dog;
+        //$this->dog->master = $this->name;
     }
-    public function setItem($random)
+    public function setItem($item)
     {
-        $this->item = $random;
+        $this->item = $item;
     }
 
     /****
@@ -46,10 +47,10 @@ class Master
      */
     public function setStreet($street)
     {
-        $this->plate = $street;
+        $this->plaсe = $street;
     }
     public function getStreet(){
-        return $this->plate->getName();
+        return $this->plaсe->getName();
     }
     /**
     *
@@ -68,7 +69,7 @@ class Master
     }
     public function getStreetName()
     {
-        return $this->plate->getName();
+        return $this->plaсe->getName();
     }
     public function Walk()
     {
@@ -84,9 +85,9 @@ class Master
 
     private function collMyDog()
     {
-        $this->state = "$this->name Call dog";   //step 1
-        echo $this->state . PHP_EOL;
-        $this->dog->GoTo($this->name);
+        $this->state = "Call dog";   //step 1
+        //echo $this->state . PHP_EOL;
+        $this->dog->GoTo($this);
 
         return $this->state;
     }
@@ -96,8 +97,9 @@ class Master
     {
         $Item_man = $this->getItemName();
         $dog_man = $this->getDogName();
+
         $this->state = "$this->name take $Item_man and puts on $dog_man";   //step 2 Берём поводок и надеваем на собаку
-        echo $this->state . PHP_EOL;
+        //echo $this->state . PHP_EOL;
 
         return $this->state;
     }

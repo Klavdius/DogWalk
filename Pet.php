@@ -5,12 +5,14 @@ class Pet
     /**
      * @var $master Master
      * @var $plate Street
+     * @var $oracul Oracul
      */
-    private $status = "Dog In Home";
+    private $state = 0;
     private $name = null;
     private $action = null;
     private $street = null;
     private $master = null;
+    private $oracul = null;
 
 
     /**
@@ -33,9 +35,15 @@ class Pet
     public function Happy()
     {
         echo "$this->name is HAPPY" . PHP_EOL;
-        $this->status = "Happy";
+        $this->state = "Happy";
     }
 
+    public function setOracul($oracul){
+        $this->oracul = $oracul;
+        $this->state = $this->state ^ 1 << 0;
+        $this->state = $this->state ^ 1 << 2;
+        $this->oracul->voice($this,$this->state);
+    }
 
     public function setAction($move)
     {
@@ -51,13 +59,14 @@ class Pet
 
     }
 
+
     public function getMasterName(){
         echo "$this->name knows that his master $this->master" . PHP_EOL;
         return $this->master;
     }
 
     /**
-     *  тест с if
+     *  test if
      */
     public function dogOnStreet(){
         if ($this->street == null){
@@ -77,11 +86,14 @@ class Pet
      *
      */
 
-    public function GoTo($place)
+    public function GoTo($man)
     {
-        $this->status = "$this->name Go to $place" . PHP_EOL;
-        echo $this->status . PHP_EOL;
-        return $this->status;
+        if($man == $this->master){
+            $this->state = 1;
+        }
+
+        //echo $this->state . PHP_EOL;
+        return $this->state;
     }
 
 
